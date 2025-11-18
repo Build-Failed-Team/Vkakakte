@@ -64,6 +64,7 @@ public class NekoChatSettingsActivity extends BaseNekoSettingsActivity implement
     private int tryToOpenAllLinksInIVRow;
     private int disableJumpToNextRow;
     private int disableGreetingStickerRow;
+    private int hideChannelBottomButtonsRow;
     private int doubleTapActionRow;
     private int maxRecentStickersRow;
     private int chat2Row;
@@ -387,6 +388,11 @@ public class NekoChatSettingsActivity extends BaseNekoSettingsActivity implement
             if (view instanceof TextCheckCell) {
                 ((TextCheckCell) view).setChecked(NekoConfig.preferOriginalQuality);
             }
+        } else if (position == hideChannelBottomButtonsRow) {
+            NekoConfig.toggleHideChannelBottomButtons();
+            if (view instanceof TextCheckCell) {
+                ((TextCheckCell) view).setChecked(NekoConfig.hideChannelBottomButtons);
+            }
         }
     }
 
@@ -417,6 +423,7 @@ public class NekoChatSettingsActivity extends BaseNekoSettingsActivity implement
         tryToOpenAllLinksInIVRow = addRow("tryToOpenAllLinksInIV");
         disableJumpToNextRow = addRow("disableJumpToNext");
         disableGreetingStickerRow = addRow("disableGreetingSticker");
+        hideChannelBottomButtonsRow = addRow("hideChannelBottomButtons");
         doubleTapActionRow = addRow("doubleTapAction");
         maxRecentStickersRow = addRow("maxRecentStickers");
         chat2Row = addRow();
@@ -753,6 +760,8 @@ public class NekoChatSettingsActivity extends BaseNekoSettingsActivity implement
                         textCell.setTextAndValueAndCheck(LocaleController.getString(R.string.ShowTimeHint), LocaleController.getString(R.string.ShowTimeHintDesc), NekoConfig.showTimeHint, true, divider);
                     } else if (position == preferOriginalQualityRow) {
                         textCell.setTextAndValueAndCheck(LocaleController.getString(R.string.PreferOriginalQuality), LocaleController.getString(R.string.PreferOriginalQualityDesc), NekoConfig.preferOriginalQuality, true, divider);
+                    } else if (position == hideChannelBottomButtonsRow) {
+                        textCell.setTextAndCheck(LocaleController.getString(R.string.HideChannelBottomButtons), NekoConfig.hideChannelBottomButtons, divider);
                     }
                     break;
                 }

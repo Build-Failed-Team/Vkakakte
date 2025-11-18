@@ -144,6 +144,7 @@ public class NekoConfig {
     public static boolean autoInlineBot = false;
     public static boolean forceFontWeightFallback = false;
     public static boolean minimizedStickerCreator = false;
+    public static boolean hideChannelBottomButtons = false;
 
     public static boolean springAnimation = false;
 
@@ -251,6 +252,7 @@ public class NekoConfig {
             autoInlineBot = preferences.getBoolean("autoInlineBot", false);
             forceFontWeightFallback = preferences.getBoolean("forceFontWeightFallback", false);
             minimizedStickerCreator = preferences.getBoolean("minimizedStickerCreator", false);
+            hideChannelBottomButtons = preferences.getBoolean("hideChannelBottomButtons", false);
 
             LensHelper.checkLensSupportAsync();
             preferences.registerOnSharedPreferenceChangeListener(listener);
@@ -398,6 +400,14 @@ public class NekoConfig {
         SharedPreferences preferences = ApplicationLoader.applicationContext.getSharedPreferences("nekoconfig", Activity.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putInt("downloadSpeedBoost2", boost);
+        editor.apply();
+    }
+
+    public static void toggleHideChannelBottomButtons() {
+        hideChannelBottomButtons = !hideChannelBottomButtons;
+        SharedPreferences preferences = ApplicationLoader.applicationContext.getSharedPreferences("nekoconfig", Activity.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean("hideChannelBottomButtons", hideChannelBottomButtons);
         editor.apply();
     }
 
